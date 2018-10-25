@@ -41,6 +41,8 @@ class Maker
                     "<?php\n\nclass " . $arr[count($arr)-1] . "Controller extends Yaf\Controller_Abstract {\n\n}");
             }
             return false;
+        }elseif ($this->type == 'models'){
+
         }
     }
 }
