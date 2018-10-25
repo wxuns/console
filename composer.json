@@ -1,6 +1,6 @@
 {
     "name": "wxuns/console",
-    "description": "this pachage of polite console",
+    "description": "this package of polite console",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -14,5 +14,6 @@
     	"psr-4": {
         	"Polite\\Console\\": "src/"
     	}
-	}
+	},
+
 }
