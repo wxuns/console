@@ -44,6 +44,6 @@ class Version extends Command
             "/_/     \_ _ _/\_ _ /_/   \_/   \_ _ _ _/",
             "",
         ]);
-        $output->writeln("<info>Polite version v1.0.1 2018.10.16 21:31:30</info>");
+        $output->writeln("<info>Polite version v1.2.0 2018.10.16 21:31:30</info>");
     }
 }
