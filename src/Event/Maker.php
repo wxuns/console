@@ -22,27 +22,40 @@ class Maker
         $this->application = realpath(dirname(__FILE__) . '/../../../../../');
     }
 
+    /**
+     * make file
+     * @return bool|int
+     */
     public function buildFile()
     {
+        $arr = explode('/',$this->filename);
         if ($this->type == 'controllers'){
-            $arr = explode('/',$this->filename);
             if (!strpos($this->filename,'/')){
                 $controllerPath = $this->application . '/app/controllers/' . $this->filename . '.php';
             }else{
                 $controllerPath = $this->application . '/app/modules/' . $arr[0] . '/controllers/' . $arr[1] . '.php';
             }
-            if (!file_exists($controllerPath)){
-                if (!is_dir(dirname($controllerPath))){
-                    mkdir(dirname($controllerPath),0777,true)?:function(){
-                        exit();
-                    };
-                }
-                return file_put_contents($controllerPath,
-                    "<?php\n\nclass " . $arr[count($arr)-1] . "Controller extends Yaf\Controller_Abstract {\n\n}");
-            }
-            return false;
+            return $this->writeFile($controllerPath,
+                "<?php\n\nclass " . $arr[count($arr)-1] . "Controller extends Yaf\Controller_Abstract \n{\n\n}");
         }elseif ($this->type == 'models'){
+            $modelPath = $this->application . '/app/models/' . $this->filename . '.php';
 
+            return $this->writeFile($modelPath,
+                "<?php\n\n" . (count($arr)>1?'namespace ' . $arr[0] . ";\n" : '')
+                    . "class " . $arr[count($arr)-1] 
+                    . "Model extends \Illuminate\Database\Eloquent\Model \n{\n\n}");
         }
+    }
+    public function writeFile($path,$content)
+    {
+        if (!file_exists($path)) {
+            if (!is_dir(dirname($path))) {
+                mkdir(dirname($path), 0777, true) ?: function () {
+                    exit();
+                };
+            }
+            return file_put_contents($path, $content);
+        }
+        return false;
     }
 }
