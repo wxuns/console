@@ -9,7 +9,10 @@
             "email": "php7ml@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "doctrine/migrations": "^1.8",
+        "symfony/console": "^4.1"
+    },
     "autoload": {
     	"psr-4": {
         	"Polite\\Console\\": "src/"
