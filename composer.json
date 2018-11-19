@@ -10,7 +10,6 @@
         }
     ],
     "require": {
-        "doctrine/migrations": "^1.8",
         "symfony/console": "^4.1"
     },
     "autoload": {
