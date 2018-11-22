@@ -24,12 +24,12 @@ class Version extends Command
 
             // the short description shown while running "php bin/console list"
             // 运行 "php bin/console list" 时的简短描述
-            ->setDescription('show version')
+            ->setDescription('Show version')
 
             // the full command description shown when running the command with
             // the "--help" option
             // 运行命令时使用 "--help" 选项时的完整命令描述
-            ->setHelp("show version")
+            ->setHelp("Show version")
         ;
     }
 

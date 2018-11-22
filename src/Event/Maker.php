@@ -19,7 +19,7 @@ class Maker
     {
         $this->type = $type;
         $this->filename = $filename;
-        $this->application = realpath(dirname(__FILE__) . '/../../../../../');
+        $this->application = Config::$application;
     }
 
     /**

@@ -14,6 +14,7 @@ class Commands
     {
         $commit = [
             new \Polite\Console\Version(),
+            new \Polite\Console\Config\Config(),
             new \Polite\Console\Maker\MakeController(),
             new \Polite\Console\Maker\MakeModel(),
         ];
