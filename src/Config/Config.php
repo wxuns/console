@@ -31,17 +31,29 @@ class Config extends Command
             // 运行命令时使用 "--help" 选项时的完整命令描述
             ->setHelp("Show all or one configuration")
             ->addArgument('pathname', InputArgument::REQUIRED, 'config path name.')
-            ->addArgument('configname', InputArgument::REQUIRED, 'config name.')
+            ->addArgument('configname', InputArgument::OPTIONAL, 'config name.')
         ;
     }
 
     protected function execute(InputInterface $input,OutputInterface $output)
     {
-        if ($pathname = $input->getArgument('pathname')){
-            $config = new \Polite\Console\Event\Config();
-            var_dump($config->getConfig($pathname));
-        }else{
+        $pathname = $input->getArgument('pathname');
+        $configname = $input->getArgument('configname');
+        $config = new \Polite\Console\Event\Config();
 
+        if($ini = $config->getConfig($pathname,$configname)){
+            if (is_string($ini)){
+                $output->writeln(
+                    "<info>$configname '=>' $ini</info>");
+            }else{
+                dump($ini);
+//                foreach ($ini as $k=>$v){
+//                    dump($v);
+//                }
+            }
+        }else{
+            $output->writeln(
+                '<error>this config non-existent</error>');
         }
     }
 }

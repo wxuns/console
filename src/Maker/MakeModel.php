@@ -39,6 +39,6 @@ class MakeModel extends Command
         $maker = new Maker('models',$input->getArgument('models'));
         $output->writeln($maker->buildFile()?
             '<info>model:' . $input->getArgument('models') . ' create success</info>':
-            '<error>model:' . $input->getArgument('models') . ' is already</error>');
+            '<error>model:' . $input->getArgument('models') . ' has already</error>');
     }
 }

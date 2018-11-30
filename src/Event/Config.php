@@ -26,11 +26,19 @@ class Config
     public function getConfig($pathname,$configname = null)
     {
         $ini_path = self::$application . '/conf/';
-        $config = parse_ini_file($ini_path . $pathname . '.ini');
-        if ($config){
-            return $configname?isset($config[$configname])?$config[$configname]:false:$config;
-        }else{
+        $file = $ini_path . $pathname . '.ini';
+        while (!file_exists($file)) :
             return false;
+        endwhile;
+
+        $config = parse_ini_file($file);
+        if (strstr($configname,'.')){
+            return $configname?(isset($config[$configname])?$config[$configname]:false):$config;
+        }else{
+            foreach ($config as $k=>$v){
+                dump($k);
+            }
+            return 21321;
         }
     }
 }

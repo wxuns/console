@@ -39,6 +39,6 @@ class MakeController extends Command
         $maker = new Maker('controllers',$input->getArgument('controllers'));
         $output->writeln($maker->buildFile()?
             '<info>controller:' . $input->getArgument('controllers') . ' create success</info>':
-            '<error>controller:' . $input->getArgument('controllers') . ' is already</error>');
+            '<error>controller:' . $input->getArgument('controllers') . ' has already</error>');
     }
 }
