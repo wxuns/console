@@ -42,14 +42,22 @@ class Config extends Command
         $pathname = $input->getArgument('pathname');
         $configname = $input->getArgument('configname');
         $config = new \Polite\Console\Event\Config();
-
         if($ini = $config->getConfig($pathname,$configname)){
+            $io = new ConsoleStyle($input, $output);
             if (is_string($ini)){
-                $output->writeln(
-                    "<info>$configname '=>' $ini</info>");
+                $io->newLine();
+                $io->table(['config_name','container'],[[$configname,$ini]]);
             }else{
-                $io = new ConsoleStyle($input, $output);
-                $io->configTable($ini);
+                if (strstr($configname,'.')){
+                    $io->configTable($ini);
+                }else{
+                    $conf = [];
+                    foreach ($ini as $k=>$i){
+                        $conf = array_merge_recursive([[$k=>$i]],$conf);
+                    }
+                    $io->newLine();
+                    $io->table(['config_name','container'],$conf);
+                }
             }
         }else{
             $output->writeln(

@@ -18,7 +18,7 @@ class Config
     }
 
     /**
-     * »ñÈ¡ÅäÖÃÏîĞÅÏ¢
+     * è·å–é…ç½®é¡¹ä¿¡æ¯
      * @param $pathname
      * @param null $configname
      * @return array|bool
@@ -42,7 +42,7 @@ class Config
     }
 
     /**
-     * ºÏ²¢Êı×é
+     * åˆå¹¶æ•°ç»„
      * @param $tree
      * @return array
      */
@@ -57,7 +57,7 @@ class Config
     }
 
     /**
-     * ¼üÖµÅÅĞò
+     * é”®å€¼æ’åº
      * @param $str
      * @param $value
      * @return array
