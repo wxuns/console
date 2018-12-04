@@ -9,26 +9,28 @@
 
 namespace Polite\Console\Config;
 
+use Polite\Console\ConsoleStyle;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+
 class Config extends Command
 {
     protected function configure()
     {
         $this
             // the name of the command (the part after "bin/console")
-            // ÃüÁîµÄÃû×Ö£¨"bin/console" ºóÃæµÄ²¿·Ö£©
+            // å‘½ä»¤çš„åå­—ï¼ˆ"bin/console" åŽé¢çš„éƒ¨åˆ†ï¼‰
             ->setName('config:get')
 
             // the short description shown while running "php bin/console list"
-            // ÔËÐÐ "php bin/console list" Ê±µÄ¼ò¶ÌÃèÊö
+            // è¿è¡Œ "php bin/console list" æ—¶çš„ç®€çŸ­æè¿°
             ->setDescription('Show all or one configuration')
 
             // the full command description shown when running the command with
             // the "--help" option
-            // ÔËÐÐÃüÁîÊ±Ê¹ÓÃ "--help" Ñ¡ÏîÊ±µÄÍêÕûÃüÁîÃèÊö
+            // è¿è¡Œå‘½ä»¤æ—¶ä½¿ç”¨ "--help" é€‰é¡¹æ—¶çš„å®Œæ•´å‘½ä»¤æè¿°
             ->setHelp("Show all or one configuration")
             ->addArgument('pathname', InputArgument::REQUIRED, 'config path name.')
             ->addArgument('configname', InputArgument::OPTIONAL, 'config name.')
@@ -46,10 +48,8 @@ class Config extends Command
                 $output->writeln(
                     "<info>$configname '=>' $ini</info>");
             }else{
-                dump($ini);
-//                foreach ($ini as $k=>$v){
-//                    dump($v);
-//                }
+                $io = new ConsoleStyle($input, $output);
+                $io->configTable($ini);
             }
         }else{
             $output->writeln(

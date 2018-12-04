@@ -34,11 +34,50 @@ class Config
         $config = parse_ini_file($file);
         if (strstr($configname,'.')){
             return $configname?(isset($config[$configname])?$config[$configname]:false):$config;
+        }else if($configname===null) {
+            return $this->getTree($config);
         }else{
-            foreach ($config as $k=>$v){
-                dump($k);
-            }
-            return 21321;
+            return isset($this->getTree($config)[$configname])?$this->getTree($config)[$configname]:false;
         }
+    }
+
+    /**
+     * 合并数组
+     * @param $tree
+     * @return array
+     */
+    public function getTree($tree)
+    {
+        $anyconfig = [];
+
+        foreach ($tree as $k=>$v){
+            $anyconfig = array_merge_recursive($this->stringToArray($k,$v),$anyconfig);
+        }
+        return $anyconfig;
+    }
+
+    /**
+     * 键值排序
+     * @param $str
+     * @param $value
+     * @return array
+     */
+    public function stringToArray($str,$value)
+    {
+        $separator = '.';
+        $pos = strpos($str, $separator);
+
+        if ($pos === false) {
+            return [$str=>$value];
+        }
+
+        $key = substr($str, 0, $pos);
+        $str = substr($str, $pos + 1);
+
+        $result = [
+            $key => $this->stringToArray($str,$value),
+        ];
+
+        return $result;
     }
 }

@@ -9,8 +9,21 @@
 
 namespace Polite\Console;
 
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
-class ConsoleStyle
+class ConsoleStyle extends SymfonyStyle
 {
+    private $input;
+    public function __construct(InputInterface $input,OutputInterface $output)
+    {
+        $this->input = $input;
+        parent::__construct($input,$output);
+    }
 
+    public function configTable($config)
+    {
+        dump($config);
+    }
 }
