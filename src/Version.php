@@ -36,15 +36,13 @@ class Version extends Command
 
     protected function execute(InputInterface $input,OutputInterface $output)
     {
-        $output->writeln([
-            "     _ _ _   _ _    _     _ _ _ _ _ _ _ _ _ ",
-            "    / _ _ \/ _ _ \/ /   / /\_ _ _ _/ _ _ _ /",
-            "   / /_ / / /  / / /   / /   / /  / /_ _ _",
-            "  / /_ _ / /  / / /   / /   / /  / /_ _ _/",
-            " / /    / /_ / / /_ _/ /   / /  / /_ _ _ ",
-            "/_/     \_ _ _/\_ _ /_/   \_/   \_ _ _ _/",
-            "",
+        $flf = realpath(dirname(__FILE__) .'/../flf');
+        $figlet = new Figlet([
+            'font'=>$flf.'/digital.flf'
         ]);
-        $output->writeln("<info>Polite version v1.2.0 2018.10.16 21:31:30</info>");
+        $output->writeln([
+            $figlet->render('Polite'),
+            "<info>Polite version v1.2.0 2018.10.16 21:31:30</info>"
+        ]);
     }
 }
