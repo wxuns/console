@@ -4,16 +4,16 @@
  * Author: wxuns <wxuns@wxuns.cn>
  * Link: http://wxuns.cn
  * Date: 2018/10/17
- * Time: 20:57
+ * Time: 20:57.
  */
 
 namespace Polite\Console\Maker;
 
 use Polite\Console\Event\Maker;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\InputArgument;
 
 class MakeController extends Command
 {
@@ -30,15 +30,15 @@ class MakeController extends Command
             // the full command description shown when running the command with
             // the "--help" option
             // 运行命令时使用 "--help" 选项时的完整命令描述
-            ->setHelp("This command allows you to create controller file")
-            ->addArgument('controller', InputArgument::REQUIRED, 'controller name.')
-        ;
+            ->setHelp('This command allows you to create controller file')
+            ->addArgument('controller', InputArgument::REQUIRED, 'controller name.');
     }
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $maker = new Maker('controller',$input->getArgument('controller'));
-        $output->writeln($maker->buildFile()?
-            '<info>controller:' . $input->getArgument('controller') . ' create success</info>':
-            '<error>controller:' . $input->getArgument('controller') . ' has already</error>');
+        $maker = new Maker('controller', $input->getArgument('controller'));
+        $output->writeln($maker->buildFile() ?
+            '<info>controller:'.$input->getArgument('controller').' create success</info>' :
+            '<error>controller:'.$input->getArgument('controller').' has already</error>');
     }
 }

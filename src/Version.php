@@ -4,7 +4,7 @@
  * Author: wxuns
  * Link: https://www.wxuns.cn
  * Date: 2018/10/12
- * Time: 11:31
+ * Time: 11:31.
  */
 
 namespace Polite\Console;
@@ -30,19 +30,18 @@ class Version extends Command
             // the full command description shown when running the command with
             // the "--help" option
             // 运行命令时使用 "--help" 选项时的完整命令描述
-            ->setHelp("Show version")
-        ;
+            ->setHelp('Show version');
     }
 
-    protected function execute(InputInterface $input,OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $flf = realpath(dirname(__FILE__) .'/../flf');
+        $flf = realpath(dirname(__FILE__).'/../flf');
         $figlet = new Figlet([
-            'font'=>$flf.'/digital.flf'
+            'font'=> $flf.'/digital.flf',
         ]);
         $output->writeln([
             $figlet->render('Polite'),
-            "<info>Polite version v1.2.0 2018.10.16 21:31:30</info>"
+            '<info>Polite version v1.2.0 2018.10.16 21:31:30</info>',
         ]);
     }
 }

@@ -4,7 +4,7 @@
  * Author: wxuns
  * Link: https://www.wxuns.cn
  * Date: 2018/10/24
- * Time: 11:34
+ * Time: 11:34.
  */
 
 namespace Polite\Console\Event;
@@ -15,7 +15,7 @@ class Maker
     public $filename = '';
     protected $application = '';
 
-    public function __construct($type,$filename)
+    public function __construct($type, $filename)
     {
         $this->type = $type;
         $this->filename = $filename;
@@ -23,30 +23,33 @@ class Maker
     }
 
     /**
-     * make file
+     * make file.
+     *
      * @return bool|int
      */
     public function buildFile()
     {
-        $arr = explode('/',$this->filename);
-        if ($this->type == 'controller'){
-            if (!strpos($this->filename,'/')){
-                $controllerPath = $this->application . '/app/controllers/' . $this->filename . '.php';
-            }else{
-                $controllerPath = $this->application . '/app/modules/' . $arr[0] . '/controllers/' . $arr[1] . '.php';
+        $arr = explode('/', $this->filename);
+        if ($this->type == 'controller') {
+            if (!strpos($this->filename, '/')) {
+                $controllerPath = $this->application.'/app/controllers/'.$this->filename.'.php';
+            } else {
+                $controllerPath = $this->application.'/app/modules/'.$arr[0].'/controllers/'.$arr[1].'.php';
             }
+
             return $this->writeFile($controllerPath,
-                "<?php\n\nclass " . $arr[count($arr)-1] . "Controller extends Yaf\Controller_Abstract \n{\n\n}");
-        }elseif ($this->type == 'models'){
-            $modelPath = $this->application . '/app/models/' . $this->filename . '.php';
+                "<?php\n\nclass ".$arr[count($arr) - 1]."Controller extends Yaf\Controller_Abstract \n{\n\n}");
+        } elseif ($this->type == 'models') {
+            $modelPath = $this->application.'/app/models/'.$this->filename.'.php';
 
             return $this->writeFile($modelPath,
-                "<?php\n\n" . (count($arr)>1?'namespace ' . $arr[0] . ";\n" : '')
-                    . "class " . $arr[count($arr)-1] 
-                    . "Model extends \Illuminate\Database\Eloquent\Model \n{\n\n}");
+                "<?php\n\n".(count($arr) > 1 ? 'namespace '.$arr[0].";\n" : '')
+                    .'class '.$arr[count($arr) - 1]
+                    ."Model extends \Illuminate\Database\Eloquent\Model \n{\n\n}");
         }
     }
-    public function writeFile($path,$content)
+
+    public function writeFile($path, $content)
     {
         if (!file_exists($path)) {
             if (!is_dir(dirname($path))) {
@@ -54,8 +57,10 @@ class Maker
                     exit();
                 };
             }
+
             return file_put_contents($path, $content);
         }
+
         return false;
     }
 }
