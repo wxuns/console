@@ -4,7 +4,7 @@
  * Author: wxuns
  * Link: https://www.wxuns.cn
  * Date: 2018/11/22
- * Time: 17:04
+ * Time: 17:04.
  */
 
 namespace Polite\Console\Config;
@@ -31,31 +31,30 @@ class Config extends Command
             // the full command description shown when running the command with
             // the "--help" option
             // 运行命令时使用 "--help" 选项时的完整命令描述
-            ->setHelp("Show all or one configuration")
+            ->setHelp('Show all or one configuration')
             ->addArgument('pathname', InputArgument::REQUIRED, 'config path name.')
-            ->addArgument('configname', InputArgument::OPTIONAL, 'config name.')
-        ;
+            ->addArgument('configname', InputArgument::OPTIONAL, 'config name.');
     }
 
-    protected function execute(InputInterface $input,OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
         $pathname = $input->getArgument('pathname');
         $configname = $input->getArgument('configname');
         $config = new \Polite\Console\Event\Config();
-        if($ini = $config->getConfig($pathname,$configname,true)){
+        if ($ini = $config->getConfig($pathname, $configname, true)) {
             $io = new ConsoleStyle($input, $output);
-            if (is_string($ini)){
+            if (is_string($ini)) {
                 $io->newLine();
-                $io->table(['config_name','container'],[[$configname,$ini]]);
-            }else{
+                $io->table(['config_name', 'container'], [[$configname, $ini]]);
+            } else {
                 $conf = [];
-                foreach ($ini as $k=>$i){
-                    $conf = array_merge_recursive([[$k,$i]],$conf);
+                foreach ($ini as $k=>$i) {
+                    $conf = array_merge_recursive([[$k, $i]], $conf);
                 }
                 $io->newLine();
-                $io->table(['config_name','container'],$conf);
+                $io->table(['config_name', 'container'], $conf);
             }
-        }else{
+        } else {
             $output->writeln(
                 '<error>this config non-existent</error>');
         }
