@@ -11,7 +11,7 @@ namespace Polite\Console\Event;
 
 class Maker
 {
-    public $type = 'controllers';
+    public $type = 'controller';
     public $filename = '';
     protected $application = '';
 
@@ -29,7 +29,7 @@ class Maker
     public function buildFile()
     {
         $arr = explode('/',$this->filename);
-        if ($this->type == 'controllers'){
+        if ($this->type == 'controller'){
             if (!strpos($this->filename,'/')){
                 $controllerPath = $this->application . '/app/controllers/' . $this->filename . '.php';
             }else{

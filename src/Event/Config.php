@@ -21,9 +21,10 @@ class Config
      * 获取配置项信息
      * @param $pathname
      * @param null $configname
-     * @return array|bool
+     * @param int $from
+     * @return array|bool|mixed
      */
-    public function getConfig($pathname,$configname = null)
+    public function getConfig($pathname,$configname = null,$from=false)
     {
         $ini_path = self::$application . '/conf/';
         $file = $ini_path . $pathname . '.ini';
@@ -33,12 +34,17 @@ class Config
 
         $config = parse_ini_file($file);
         if (strstr($configname,'.')){
-            return $configname?(isset($config[$configname])?$config[$configname]:false):$config;
+            $ini =  $configname?(isset($config[$configname])?$config[$configname]:false):$config;
         }else if($configname===null) {
-            return $this->getTree($config);
+            $ini = $from?$config:$this->getTree($config);
         }else{
-            return isset($this->getTree($config)[$configname])?$this->getTree($config)[$configname]:false;
+            $ini = isset($this->getTree($config)[$configname])?$this->getTree($config)[$configname]:false;
+            if ((count($ini)!=count($ini,1))&&$from){
+                $ini = $config;
+            }
         }
+        is_array($ini)?krsort ($ini):$ini;
+        return $ini;
     }
 
     /**
