@@ -7,7 +7,7 @@
  * Time: 11:31.
  */
 
-namespace Polite\Console;
+namespace Polite\Console\Adapters;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -35,7 +35,7 @@ class Version extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $flf = realpath(dirname(__FILE__).'/../flf');
+        $flf = realpath(dirname(__FILE__).'../../../flf');
         $figlet = new Figlet([
             'font'=> $flf.'/digital.flf',
         ]);

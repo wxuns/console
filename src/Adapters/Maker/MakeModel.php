@@ -7,7 +7,7 @@
  * Time: 21:00.
  */
 
-namespace Polite\Console\Maker;
+namespace Polite\Console\Adapters\Maker;
 
 use Polite\Console\Event\Maker;
 use Symfony\Component\Console\Command\Command;

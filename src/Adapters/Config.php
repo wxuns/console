@@ -7,7 +7,7 @@
  * Time: 17:04.
  */
 
-namespace Polite\Console\Config;
+namespace Polite\Console\Adapters;
 
 use Polite\Console\ConsoleStyle;
 use Symfony\Component\Console\Command\Command;

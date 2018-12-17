@@ -14,10 +14,10 @@ class Commands
     public static function Commands()
     {
         $commit = [
-            new \Polite\Console\Version(),
-            new \Polite\Console\Config\Config(),
-            new \Polite\Console\Maker\MakeController(),
-            new \Polite\Console\Maker\MakeModel(),
+            new \Polite\Console\Adapters\Version(),
+            new \Polite\Console\Adapters\Config(),
+            new \Polite\Console\Adapters\Maker\MakeController(),
+            new \Polite\Console\Adapters\Maker\MakeModel(),
         ];
 
         return $commit;
