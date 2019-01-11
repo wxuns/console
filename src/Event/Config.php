@@ -16,6 +16,7 @@ class Config
     public function __construct()
     {
         $this::$application = realpath(dirname(__FILE__).'/../../../../../');
+        dump(dirname(__FILE__));
     }
 
     /**

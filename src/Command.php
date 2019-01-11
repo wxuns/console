@@ -9,22 +9,17 @@
 
 namespace Polite\Console;
 
-
-use Symfony\Component\Console\Application;
-
 class Command
 {
     static public $defaultcommand = [
-        '\Polite\Console\Adapters\Version',
-        '\Polite\Console\Adapters\Config',
-        '\Polite\Console\Adapters\Maker\MakeController',
-        '\Polite\Console\Adapters\Maker\MakeModel'
+        \Polite\Console\Adapters\Version::class,
+        \Polite\Console\Adapters\Config::class,
+        \Polite\Console\Adapters\Maker\MakeController::class,
+        \Polite\Console\Adapters\Maker\MakeModel::class,
     ];
-    public $application = '';
 
-    public function __construct($command)
+    public static function AddConsole()
     {
-        $this->application = new Application();
-        $this->application->addCommands(new self::$defaultcommand);
+        Console::AddCommands(self::$defaultcommand);
     }
 }
