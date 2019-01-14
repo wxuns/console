@@ -19,13 +19,15 @@ class Config
     }
 
     /**
-     * 获取web目录
+     * 获取web目录.
+     *
      * @return bool|string
      */
     public function getConfigFile()
     {
         return self::$application;
     }
+
     /**
      * 获取配置项信息.
      *

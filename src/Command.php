@@ -4,14 +4,14 @@
  * Author: wxuns
  * Link: https://www.wxuns.cn
  * Date: 2018/12/17
- * Time: 17:50
+ * Time: 17:50.
  */
 
 namespace Polite\Console;
 
 class Command
 {
-    static public $defaultcommand = [
+    public static $defaultcommand = [
         \Polite\Console\Adapters\Version::class,
         \Polite\Console\Adapters\GetConfig::class,
         \Polite\Console\Adapters\Maker\MakeController::class,
