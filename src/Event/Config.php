@@ -16,9 +16,16 @@ class Config
     public function __construct()
     {
         $this::$application = realpath(dirname(__FILE__).'/../../../../../');
-        dump(dirname(__FILE__));
     }
 
+    /**
+     * 获取web目录
+     * @return bool|string
+     */
+    public function getConfigFile()
+    {
+        return self::$application;
+    }
     /**
      * 获取配置项信息.
      *

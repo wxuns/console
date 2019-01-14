@@ -8,7 +8,6 @@
  */
 
 namespace Polite\Console\Event;
-
 class Maker
 {
     public $type = 'controller';
@@ -19,7 +18,8 @@ class Maker
     {
         $this->type = $type;
         $this->filename = $filename;
-        $this->application = Config::$application;
+        $configFile = new Config();
+        $this->application = $configFile->getConfigFile();
     }
 
     /**

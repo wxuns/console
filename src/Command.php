@@ -13,7 +13,7 @@ class Command
 {
     static public $defaultcommand = [
         \Polite\Console\Adapters\Version::class,
-        \Polite\Console\Adapters\Config::class,
+        \Polite\Console\Adapters\GetConfig::class,
         \Polite\Console\Adapters\Maker\MakeController::class,
         \Polite\Console\Adapters\Maker\MakeModel::class,
     ];
