@@ -8,6 +8,7 @@
  */
 
 namespace Polite\Console\Event;
+
 class Maker
 {
     public $type = 'controller';
