@@ -22,9 +22,4 @@ class ConsoleStyle extends SymfonyStyle
         $this->input = $input;
         parent::__construct($input, $output);
     }
-
-    public function configTable($config)
-    {
-        dump($config);
-    }
 }
