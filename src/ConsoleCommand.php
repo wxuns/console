@@ -7,19 +7,11 @@
  * Time: 17:50.
  */
 
-namespace Polite\Console;
-
-class Command
-{
-    public static $defaultcommand = [
+function ConsoleCommand(){
+    return [
         \Polite\Console\Adapters\Version::class,
         \Polite\Console\Adapters\GetConfig::class,
         \Polite\Console\Adapters\Maker\MakeController::class,
         \Polite\Console\Adapters\Maker\MakeModel::class,
     ];
-
-    public static function AddConsole()
-    {
-        Console::AddCommands(self::$defaultcommand);
-    }
 }
