@@ -22,7 +22,7 @@ class Config
      */
     public function getConfig($pathname, $configname = null, $from = false)
     {
-        $ini_path = BASE_PATH .'/conf/';
+        $ini_path = BASE_PATH.'/conf/';
         $file = $ini_path.$pathname.'.ini';
         while (!file_exists($file)) :
             return false;
