@@ -11,23 +11,6 @@ namespace Polite\Console\Event;
 
 class Config
 {
-    public static $application = '';
-
-    public function __construct()
-    {
-        $this::$application = realpath(dirname(__FILE__).'/../../../../../');
-    }
-
-    /**
-     * 获取web目录.
-     *
-     * @return bool|string
-     */
-    public function getConfigFile()
-    {
-        return self::$application;
-    }
-
     /**
      * 获取配置项信息.
      *
@@ -39,7 +22,7 @@ class Config
      */
     public function getConfig($pathname, $configname = null, $from = false)
     {
-        $ini_path = self::$application.'/conf/';
+        $ini_path = BASE_PATH .'/conf/';
         $file = $ini_path.$pathname.'.ini';
         while (!file_exists($file)) :
             return false;

@@ -19,8 +19,7 @@ class Maker
     {
         $this->type = $type;
         $this->filename = $filename;
-        $configFile = new Config();
-        $this->application = $configFile->getConfigFile();
+        $this->application = BASE_PATH;
     }
 
     /**
@@ -39,7 +38,7 @@ class Maker
             }
 
             return $this->writeFile($controllerPath,
-                "<?php\n\nclass ".$arr[count($arr) - 1]."Controller extends Yaf\Controller_Abstract \n{\n\n}");
+                "<?php\n\nclass ".$arr[count($arr) - 1]."Controller extends BaseController \n{\n\n}");
         } elseif ($this->type == 'models') {
             $modelPath = $this->application.'/app/models/'.$this->filename.'.php';
 
