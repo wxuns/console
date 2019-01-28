@@ -35,7 +35,8 @@ class Version extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $flf = realpath(dirname(__FILE__).'../../../flf');
+	chdir(dirname(__FILE__));
+        $flf = realpath('./../../flf');
         $figlet = new Figlet([
             'font'=> $flf.'/digital.flf',
         ]);
