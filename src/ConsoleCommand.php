@@ -13,5 +13,6 @@ function ConsoleCommand()
         \Polite\Console\Adapters\GetConfig::class,
         \Polite\Console\Adapters\Maker\MakeController::class,
         \Polite\Console\Adapters\Maker\MakeModel::class,
+        \Polite\Console\Adapters\Maker\MakeConsole::class,
     ];
 }
