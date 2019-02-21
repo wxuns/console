@@ -30,14 +30,17 @@ class Maker
     public function buildFile()
     {
         $arr = explode('/', $this->filename);
-        throw_unless(method_exists(self::class,$this->type),'The console not find');
+        throw_unless(method_exists(self::class, $this->type), 'The console not find');
         $func = $this->type;
+
         return $this->$func($arr);
     }
 
     /**
-     * make controller
+     * make controller.
+     *
      * @param $arr
+     *
      * @return bool|int
      */
     public function controller($arr)
@@ -53,8 +56,10 @@ class Maker
     }
 
     /**
-     * make models
+     * make models.
+     *
      * @param $arr
+     *
      * @return bool|int
      */
     public function models($arr)
@@ -68,16 +73,18 @@ class Maker
     }
 
     /**
-     * make console file
+     * make console file.
+     *
      * @param $arr
+     *
      * @return bool|int
      */
     public function console($arr)
     {
         $consolePath = $this->application.'/app/library/Console/'.$this->filename.'.php';
-        $res = implode('\\',$arr);
-        $namespace = count($arr)>1?"App\\Console\\".substr($res,0,strrpos($res,'\\')):'App\\Console';
-        $class = trim(substr($res,strrpos($res,'\\')),'\\');
+        $res = implode('\\', $arr);
+        $namespace = count($arr) > 1 ? 'App\\Console\\'.substr($res, 0, strrpos($res, '\\')) : 'App\\Console';
+        $class = trim(substr($res, strrpos($res, '\\')), '\\');
         $content = <<<PHP
 <?php
 
@@ -107,13 +114,15 @@ class $class extends Command
 
 PHP;
 
-        return $this->writeFile($consolePath,$content);
+        return $this->writeFile($consolePath, $content);
     }
 
     /**
-     * create file and write file
+     * create file and write file.
+     *
      * @param $path
      * @param $content
+     *
      * @return bool|int
      */
     public function writeFile($path, $content)
