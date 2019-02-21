@@ -4,7 +4,7 @@
  * Author: wxuns
  * Link: https://www.wxuns.cn
  * Date: 2019/2/20
- * Time: 15:05
+ * Time: 15:05.
  */
 
 namespace Polite\Console\Adapters\Maker;
